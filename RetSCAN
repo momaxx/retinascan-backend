@@ -1,5 +1,5 @@
 git init
 git add .
 git commit -m "Initial commit"
-git remote add origin https://github.com/yourusername/retinascan-backend.git
+git remote add origin https://github.com/momaxx/retinascan-backend.git
 git push -u origin main
