@@ -1,0 +1,45 @@
+import torch
+from torchvision import transforms
+from PIL import Image
+import numpy as np
+import os
+from gradcam import generate_gradcam_overlay
+
+# Load model
+model = torch.load("models/retina_model.pt", map_location="cpu")
+model.eval()
+
+# Preprocessing
+transform = transforms.Compose([
+    transforms.Resize((224, 224)),
+    transforms.ToTensor(),
+    transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+])
+
+def analyze_retina(image_path):
+    image = Image.open(image_path).convert("RGB")
+    input_tensor = transform(image).unsqueeze(0)
+
+    with torch.no_grad():
+        output = model(input_tensor)
+        confidence = torch.softmax(output, dim=1).max().item() * 100
+        predicted_class = torch.argmax(output, dim=1).item()
+
+    severity_map = {
+        0: "No diabetic retinopathy",
+        1: "Mild non-proliferative DR",
+        2: "Moderate non-proliferative DR",
+        3: "Severe non-proliferative DR",
+        4: "Proliferative diabetic retinopathy"
+    }
+
+    severity = severity_map.get(predicted_class, "Unknown")
+
+    # Generate Grad-CAM overlay
+    overlay_path = generate_gradcam_overlay(model, input_tensor, image_path)
+
+    return {
+        "confidence": round(confidence, 2),
+        "severity": severity,
+        "gradcam_url": f"https://your-cdn.com/overlays/{os.path.basename(overlay_path)}"
+    }
