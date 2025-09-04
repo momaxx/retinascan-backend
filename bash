@@ -11,5 +11,7 @@ pip install torch==2.8.0+cpu -f https://download.pytorch.org/whl/torch_stable.ht
 curl -X POST https://retinascan-pro.onrender.com/analyze \
   -F "image=@sample.jpg"
 https://retinascan-prot.onrender.com/health
+curl -X POST https://retinascan-prot.onrender.com/analyze \
+  -F "image=@sample.jpg"
 
 
