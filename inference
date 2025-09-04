@@ -1,0 +1,26 @@
+import random
+
+def analyze_retina(image_path):
+    # Simulate model inference
+    confidence = round(random.uniform(0, 100), 2)
+
+    # Simulate Grad-CAM overlay generation
+    gradcam_url = f"https://your-cdn.com/gradcam/{image_path.split('/')[-1]}"
+
+    # Determine severity
+    if confidence < 20:
+        severity = "No diabetic retinopathy"
+    elif confidence < 40:
+        severity = "Mild non-proliferative DR"
+    elif confidence < 60:
+        severity = "Moderate non-proliferative DR"
+    elif confidence < 80:
+        severity = "Severe non-proliferative DR"
+    else:
+        severity = "Proliferative diabetic retinopathy"
+
+    return {
+        "confidence": confidence,
+        "severity": severity,
+        "gradcam_url": gradcam_url
+    }
