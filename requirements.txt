@@ -6,4 +6,4 @@ torchvision
 Pillow
 opencv-python
 numpy
-
+requests
