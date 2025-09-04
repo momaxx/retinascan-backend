@@ -1,0 +1,7 @@
+from PIL import Image
+
+def analyze_retina(image_path):
+    try:
+        image = Image.open(image_path).convert("RGB")
+    except Exception:
+        raise ValueError("Uploaded image is corrupted or unreadable.")
