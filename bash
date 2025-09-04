@@ -10,5 +10,6 @@ curl -X POST https://retinascan-backend.up.railway.app/analyze \
 pip install torch==2.8.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
 curl -X POST https://retinascan-pro.onrender.com/analyze \
   -F "image=@sample.jpg"
+https://retinascan-prot.onrender.com/health
 
 
