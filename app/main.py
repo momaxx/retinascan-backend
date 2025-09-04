@@ -1,29 +1,7 @@
-from fastapi import FastAPI, File, UploadFile
-from fastapi.responses import JSONResponse
-from fastapi.middleware.cors import CORSMiddleware
-import os, shutil
-from model import analyze_retina
+ from fastapi import FastAPI
 
-app = FastAPI()
+ app = FastAPI()
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-@app.get("/health")
-def health():
-    return {"status": "ok"}
-
-@app.post("/analyze")
-async def analyze_image(image: UploadFile = File(...)):
-    image_path = f"uploads/{image.filename}"
-    os.makedirs("uploads", exist_ok=True)
-    with open(image_path, "wb") as buffer:
-        shutil.copyfileobj(image.file, buffer)
-
-    result = analyze_retina(image_path)
-    return JSONResponse(content=result)
-uvicorn app.main:app --host=0.0.0.0 --port=10000
+ @app.get("/")
+ def read_root():
+     return {"Hello": "World"}
