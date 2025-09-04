@@ -2,13 +2,13 @@ from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
-import shutil
 import os
+import shutil
 from model import analyze_retina
 
 app = FastAPI()
 
-# Allow frontend access
+# CORS setup for frontend access
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # Replace with your frontend domain in production
@@ -16,18 +16,25 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+
 @app.post("/analyze")
 async def analyze_image(image: UploadFile = File(...)):
-    # Save uploaded image
-    image_path = f"uploads/{image.filename}"
-    os.makedirs("uploads", exist_ok=True)
-    with open(image_path, "wb") as buffer:
-        shutil.copyfileobj(image.file, buffer)
+    try:
+        image_path = f"uploads/{image.filename}"
+        os.makedirs("uploads", exist_ok=True)
+        with open(image_path, "wb") as buffer:
+            shutil.copyfileobj(image.file, buffer)
 
-    # Run analysis
-    result = analyze_retina(image_path)
+        result = analyze_retina(image_path)
+        return JSONResponse(content=result)
 
-    return JSONResponse(content=result)
+    except Exception as e:
+        return JSONResponse(status_code=500, content={"error": str(e)})
 
+# 🔥 This is the critical part for Railway
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run("main:app", host="0.0.0.0", port=8000)
+
