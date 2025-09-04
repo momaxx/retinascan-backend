@@ -1,1 +1,2 @@
-pytest tests/
+docker build -t retinascan-backend .
+
