@@ -1,2 +1,5 @@
 model_path = "app/models/retina_model.pt"
 assert os.path.exists(model_path), f"Model not found at {model_path}"
+import logging
+logging.basicConfig(level=logging.INFO)
+logging.info("Received image: %s", image.filename)
