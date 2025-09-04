@@ -28,4 +28,4 @@ jobs:
     - name: Deploy to Railway
       if: success()
       run: curl -X POST "https://backboard.railway.app/project/YOUR_PROJECT_ID/deploy" \
-        -H "Authorization: Bearer ${{ secrets.RAILWAY_TOKEN }}"
+        -H "Authorization: Bearer ${{ 562fd627-c00b-45a9-b816-bba73b1aa366 }}"
