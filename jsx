@@ -45,3 +45,4 @@ function GradCAMViewer({ originalSrc, overlaySrc }) {
     </div>
   );
 }
+<ShareQRCode url="https://retinascan-pro.vercel.app" />
