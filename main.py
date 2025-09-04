@@ -42,5 +42,19 @@ python main.py
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("main:app", host="0.0.0.0", port=8000)
+@app.post("/analyze")
+async def analyze_image(image: UploadFile = File(...)):
+    try:
+        image_path = f"uploads/{image.filename}"
+        os.makedirs("uploads", exist_ok=True)
+        with open(image_path, "wb") as buffer:
+            shutil.copyfileobj(image.file, buffer)
+
+        result = analyze_retina(image_path)
+        return JSONResponse(content=result)
+
+    except Exception as e:
+        print("Error during analysis:", str(e))
+        return JSONResponse(status_code=500, content={"error": str(e)})
 
 
