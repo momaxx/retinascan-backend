@@ -6,7 +6,7 @@ import os
 import shutil
 from model import analyze_retina
 
-app = FastAPI()
+app = FastAPI(https://github.com/tiangolo/fastapi)
 
 # CORS setup for frontend access
 app.add_middleware(
@@ -57,7 +57,7 @@ async def analyze_image(image: UploadFile = File(...)):
         print("Error during analysis:", str(e))
         return JSONResponse(status_code=500, content={"error": str(e)})
 from fastapi import FastAPI
-app = FastAPI()
+app = FastAPI(https://github.com/tiangolo/fastapi)
 @app.get("/health")
 def health():
     return {"status": "ok"}
