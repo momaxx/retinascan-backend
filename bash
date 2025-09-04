@@ -5,5 +5,7 @@ git add .
 git commit -m "Initial backend commit"
 git remote add origin https://github.com/yourusername/retinascan-backend.git
 git push -u origin main
+curl -X POST https://retinascan-backend.up.railway.app/analyze \
+  -F "image=@sample.jpg"
 
 
