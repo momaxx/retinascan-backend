@@ -56,5 +56,8 @@ async def analyze_image(image: UploadFile = File(...)):
     except Exception as e:
         print("Error during analysis:", str(e))
         return JSONResponse(status_code=500, content={"error": str(e)})
+from fastapi import FastAPI
+
+app = FastAPI()
 
 
