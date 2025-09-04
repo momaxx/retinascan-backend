@@ -59,5 +59,8 @@ async def analyze_image(image: UploadFile = File(...)):
 from fastapi import FastAPI
 
 app = FastAPI()
+@app.get("/health")
+def health():
+    return {"status": "ok"}
 
 
