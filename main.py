@@ -37,4 +37,6 @@ async def analyze_image(image: UploadFile = File(...)):
 # 🔥 This is the critical part for Railway
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=8000)
+source /app/.venv/bin/activate
+python main.py
 
