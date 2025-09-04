@@ -1,13 +1,28 @@
 from PIL import Image
+import os
+from supabase_logger import log_scan_to_supabase  # assuming you defined it in another file
 
 def analyze_retina(image_path):
     try:
         image = Image.open(image_path).convert("RGB")
+        image_name = os.path.basename(image_path)
+
+        # Mock inference result for now
+        result = {
+            "confidence": 87.3,
+            "severity": "Moderate NPDR",
+            "gradcam_url": f"https://your-cdn.com/overlays/{image_name}.jpg"
+        }
+
+        # Log to Supabase
+        log_scan_to_supabase(
+            image_name=image_name,
+            confidence=result["confidence"],
+            severity=result["severity"],
+            gradcam_url=result["gradcam_url"]
+        )
+
+        return result
+
     except Exception:
         raise ValueError("Uploaded image is corrupted or unreadable.")
-log_scan_to_supabase(
-    image_name=image.filename,
-    confidence=result["confidence"],
-    severity=result["severity"],
-    gradcam_url=result["gradcam_url"]
-)
