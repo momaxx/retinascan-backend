@@ -57,10 +57,10 @@ async def analyze_image(image: UploadFile = File(...)):
         print("Error during analysis:", str(e))
         return JSONResponse(status_code=500, content={"error": str(e)})
 from fastapi import FastAPI
-
 app = FastAPI()
 @app.get("/health")
 def health():
     return {"status": "ok"}
+https://retinascan-pro.onrender.com/health
 
 
