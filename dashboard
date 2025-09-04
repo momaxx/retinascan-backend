@@ -9,3 +9,15 @@ function ShareQRCode({ url }) {
     </div>
   );
 }
+import QRCode from "react-qr-code";
+
+function ShareQRCode() {
+  const url = "https://retinascan-pro.vercel.app";
+  return (
+    <div className="border p-4 rounded shadow">
+      <h2 className="text-lg font-semibold">Scan to Open</h2>
+      <QRCode value={url} size={160} />
+      <p className="mt-2 text-sm text-gray-600">Scan with your phone to launch RetinaScan Pro</p>
+    </div>
+  );
+}
