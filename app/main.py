@@ -1,8 +1,7 @@
 from fastapi import FastAPI
-# Rest of your code...
 
- app = FastAPI()
+app = FastAPI()
 
- @app.get("/")
- def read_root():
-     return {"Hello": "World"}
+@app.get("/")
+async def root():
+    return {"message": "Hello World"}
