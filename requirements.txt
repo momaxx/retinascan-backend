@@ -1,1 +1,9 @@
-pytest
+fastapi
+uvicorn
+python-multipart
+torch
+torchvision
+Pillow
+opencv-python
+numpy
+
