@@ -13,5 +13,6 @@ curl -X POST https://retinascan-pro.onrender.com/analyze \
 https://retinascan-prot.onrender.com/health
 curl -X POST https://retinascan-prot.onrender.com/analyze \
   -F "image=@sample.jpg"
+pip install -r requirements.txt
 
 
