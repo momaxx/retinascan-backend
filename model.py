@@ -5,8 +5,8 @@ from datetime import datetime
 
 def log_scan_to_supabase(image_name, confidence, severity, gradcam_url):
     # Load from environment variables
-    supabase_url = os.getenv("SUPABASE_URL")
-    supabase_key = os.getenv("SUPABASE_KEY")
+    supabase_url = os.getenv("https://dbmjyboohplgtcoqlmen.supabase.co")
+    supabase_key = os.getenv("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRibWp5Ym9vaHBsZ3Rjb3FsbWVuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY5NzI4MzUsImV4cCI6MjA3MjU0ODgzNX0.JhhxveJAEZ6oxiGl5gozMlgAkJFQ_-dWDyxwTfh6kQ0")
 
     if not supabase_url or not supabase_key:
         print("Supabase credentials missing")
@@ -14,7 +14,7 @@ def log_scan_to_supabase(image_name, confidence, severity, gradcam_url):
 
     headers = {
         "apikey": supabase_key,
-        "Authorization": f"Bearer {supabase_key}",
+        "Authorization": f"Bearer {eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRibWp5Ym9vaHBsZ3Rjb3FsbWVuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY5NzI4MzUsImV4cCI6MjA3MjU0ODgzNX0.JhhxveJAEZ6oxiGl5gozMlgAkJFQ_-dWDyxwTfh6kQ0}",
         "Content-Type": "application/json"
     }
 
